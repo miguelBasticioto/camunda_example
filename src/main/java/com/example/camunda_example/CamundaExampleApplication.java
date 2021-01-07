@@ -20,6 +20,6 @@ public class CamundaExampleApplication {
 
     @EventListener
     private void processPostDeploy(PostDeployEvent event) {
-//        runtimeService.startProcessInstanceByKey("Process_04tkx8d");
+//        runtimeService.startProcessInstanceByKey("weatherCheck");
     }
 }
