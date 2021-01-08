@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 public class CheckWeatherDelegate implements JavaDelegate {
-    private final Logger LOGGER = Logger.getLogger(LoggerDelegate.class.getName());
+    private final Logger LOGGER = Logger.getLogger(PrintComplaintDelegate.class.getName());
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {

@@ -5,8 +5,8 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 import java.util.logging.Logger;
 
-public class LoggerDelegate implements JavaDelegate {
-    private final Logger LOGGER = Logger.getLogger(LoggerDelegate.class.getName());
+public class PrintComplaintDelegate implements JavaDelegate {
+    private final Logger LOGGER = Logger.getLogger(PrintComplaintDelegate.class.getName());
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
