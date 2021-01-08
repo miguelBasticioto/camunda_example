@@ -9,7 +9,8 @@ public class PrintMessageReceiveDelegate implements JavaDelegate {
     private final Logger LOGGER = Logger.getLogger(PrintMessageReceiveDelegate.class.getName());
 
     @Override
-    public void execute(DelegateExecution delegateExecution) throws Exception {
+    public void execute(DelegateExecution delegateExecution) {
+        LOGGER.info(delegateExecution.getVariable("test").toString());
 
         LOGGER.info("Evento capturado");
 

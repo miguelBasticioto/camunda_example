@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class ThrowMessageDelegate implements JavaDelegate {
 
     @Override
-    public void execute(DelegateExecution delegateExecution) throws Exception {
+    public void execute(DelegateExecution delegateExecution) {
 
         ThrowEvent messageEvent = (ThrowEvent) delegateExecution.getBpmnModelElementInstance();
 
