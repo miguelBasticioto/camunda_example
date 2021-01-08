@@ -3,7 +3,7 @@
   <bpmn:process id="weatherCheck" isExecutable="true">
     <bpmn:sequenceFlow id="Flow_1kx7asm" sourceRef="StartEvent_1" targetRef="Gateway_0mkedve" />
     <bpmn:endEvent id="Event_0gwxf5g">
-      <bpmn:incoming>Flow_164o6a1</bpmn:incoming>
+      <bpmn:incoming>Flow_17b35vr</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0xy9j4b" sourceRef="Activity_0k6ffvy" targetRef="Event_0up1kyk" />
     <bpmn:serviceTask id="Activity_0k6ffvy" name="Check weather" camunda:class="com.example.camunda_example.CheckWeatherDelegate">
@@ -36,21 +36,44 @@
     </bpmn:serviceTask>
     <bpmn:startEvent id="StartEvent_1" name="Loan Request Received" camunda:asyncAfter="true">
       <bpmn:outgoing>Flow_1kx7asm</bpmn:outgoing>
+      <bpmn:outgoing>Flow_13vjgm2</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:intermediateCatchEvent id="Event_0up1kyk">
       <bpmn:incoming>Flow_0xy9j4b</bpmn:incoming>
       <bpmn:outgoing>Flow_03nm59v</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_1u9lq85">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT05S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
-    <bpmn:sequenceFlow id="Flow_164o6a1" sourceRef="Activity_1g2w7hk" targetRef="Event_0gwxf5g" />
+    <bpmn:sequenceFlow id="Flow_164o6a1" sourceRef="Activity_1g2w7hk" targetRef="Event_12s2oye" />
     <bpmn:serviceTask id="Activity_1g2w7hk" name="Print weather" camunda:class="com.example.camunda_example.PrintWeatherDelegate">
       <bpmn:incoming>Flow_03nm59v</bpmn:incoming>
       <bpmn:outgoing>Flow_164o6a1</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_03nm59v" sourceRef="Event_0up1kyk" targetRef="Activity_1g2w7hk" />
+    <bpmn:sequenceFlow id="Flow_13vjgm2" sourceRef="StartEvent_1" targetRef="Event_1etg6s9" />
+    <bpmn:intermediateCatchEvent id="Event_1etg6s9">
+      <bpmn:incoming>Flow_13vjgm2</bpmn:incoming>
+      <bpmn:outgoing>Flow_15epvx5</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0ig9gc5" messageRef="Message_0c4bw41" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_15epvx5" sourceRef="Event_1etg6s9" targetRef="Activity_0ubcqio" />
+    <bpmn:endEvent id="Event_19pqhuf">
+      <bpmn:incoming>Flow_1ejkohx</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1ejkohx" sourceRef="Activity_0ubcqio" targetRef="Event_19pqhuf" />
+    <bpmn:serviceTask id="Activity_0ubcqio" camunda:class="com.example.camunda_example.PrintMessageReceiveDelegate">
+      <bpmn:incoming>Flow_15epvx5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ejkohx</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_17b35vr" sourceRef="Event_12s2oye" targetRef="Event_0gwxf5g" />
+    <bpmn:intermediateThrowEvent id="Event_12s2oye">
+      <bpmn:incoming>Flow_164o6a1</bpmn:incoming>
+      <bpmn:outgoing>Flow_17b35vr</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_05fvih1" messageRef="Message_0c4bw41" camunda:class="com.example.camunda_example.ThrowMessageDelegate" />
+    </bpmn:intermediateThrowEvent>
   </bpmn:process>
+  <bpmn:message id="Message_0c4bw41" name="weatherPrinted" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="weatherCheck">
       <bpmndi:BPMNEdge id="Flow_0xy9j4b_di" bpmnElement="Flow_0xy9j4b">
@@ -86,11 +109,29 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_164o6a1_di" bpmnElement="Flow_164o6a1">
         <di:waypoint x="1120" y="137" />
-        <di:waypoint x="1202" y="137" />
+        <di:waypoint x="1142" y="137" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_03nm59v_di" bpmnElement="Flow_03nm59v">
         <di:waypoint x="718" y="137" />
         <di:waypoint x="1020" y="137" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13vjgm2_di" bpmnElement="Flow_13vjgm2">
+        <di:waypoint x="208" y="137" />
+        <di:waypoint x="295" y="137" />
+        <di:waypoint x="295" y="440" />
+        <di:waypoint x="382" y="440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15epvx5_di" bpmnElement="Flow_15epvx5">
+        <di:waypoint x="418" y="440" />
+        <di:waypoint x="530" y="440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ejkohx_di" bpmnElement="Flow_1ejkohx">
+        <di:waypoint x="630" y="440" />
+        <di:waypoint x="722" y="440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17b35vr_di" bpmnElement="Flow_17b35vr">
+        <di:waypoint x="1178" y="137" />
+        <di:waypoint x="1202" y="137" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Gateway_0mkedve_di" bpmnElement="Gateway_0mkedve" isMarkerVisible="true">
         <dc:Bounds x="375" y="112" width="50" height="50" />
@@ -127,6 +168,18 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="856" y="262" width="69" height="27" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_025fpxe_di" bpmnElement="Event_1etg6s9">
+        <dc:Bounds x="382" y="422" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_19pqhuf_di" bpmnElement="Event_19pqhuf">
+        <dc:Bounds x="722" y="422" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0s4nt7d_di" bpmnElement="Activity_0ubcqio">
+        <dc:Bounds x="530" y="400" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_17hhcs8_di" bpmnElement="Event_12s2oye">
+        <dc:Bounds x="1142" y="119" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
