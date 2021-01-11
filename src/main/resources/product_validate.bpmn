@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0gm1mfs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.4.0">
+  <bpmn:process id="productValidate" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0zzkawa</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1s29rnu">
+      <bpmn:incoming>Flow_0299euc</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0zzkawa" sourceRef="StartEvent_1" targetRef="Activity_1y9dmko" />
+    <bpmn:sequenceFlow id="Flow_0299euc" sourceRef="Activity_1y9dmko" targetRef="Event_1s29rnu" />
+    <bpmn:serviceTask id="Activity_1y9dmko" name="Validate product" camunda:class="com.example.camunda_example.ProductValidate">
+      <bpmn:incoming>Flow_0zzkawa</bpmn:incoming>
+      <bpmn:outgoing>Flow_0299euc</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="productValidate">
+      <bpmndi:BPMNEdge id="Flow_0zzkawa_di" bpmnElement="Flow_0zzkawa">
+        <di:waypoint x="215" y="97" />
+        <di:waypoint x="320" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0299euc_di" bpmnElement="Flow_0299euc">
+        <di:waypoint x="420" y="97" />
+        <di:waypoint x="552" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="79" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1s29rnu_di" bpmnElement="Event_1s29rnu">
+        <dc:Bounds x="552" y="79" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0f2tcq4_di" bpmnElement="Activity_1y9dmko">
+        <dc:Bounds x="320" y="57" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
