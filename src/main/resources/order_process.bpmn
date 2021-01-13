@@ -98,7 +98,7 @@
       <bpmn:outgoing>Flow_1s1lg2j</bpmn:outgoing>
       <bpmn:errorEventDefinition id="ErrorEventDefinition_0af2skg" errorRef="Error_1hogrj7" />
     </bpmn:boundaryEvent>
-    <bpmn:endEvent id="Event_1r056td">
+    <bpmn:endEvent id="Event_1r056td" name="Order canceled">
       <bpmn:extensionElements>
         <camunda:executionListener class="com.example.camunda_example.order_process.ConfirmCancel" event="start" />
       </bpmn:extensionElements>
@@ -146,6 +146,9 @@
       <bpmndi:BPMNEdge id="Flow_1ca4p5x_di" bpmnElement="Flow_1ca4p5x">
         <di:waypoint x="700" y="317" />
         <di:waypoint x="830" y="317" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="762" y="299" width="7" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0pnju6r_di" bpmnElement="Flow_0pnju6r">
         <di:waypoint x="525" y="317" />
@@ -232,6 +235,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0ipneel_di" bpmnElement="Event_1r056td">
         <dc:Bounds x="692" y="492" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="672" y="535" width="76" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1eub95l_di" bpmnElement="Event_0uenxa5">
         <dc:Bounds x="882" y="339" width="36" height="36" />
