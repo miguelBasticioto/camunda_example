@@ -7,8 +7,8 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 public class CanceledRequest implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) {
-        Boolean canceled = (Boolean) delegateExecution.getVariable("productAvailable");
+        Boolean productAvailable = (Boolean) delegateExecution.getVariable("productAvailable");
 
-        if (canceled) throw new BpmnError("task_failed_code", "User Task failed!");
+        if (!productAvailable) throw new BpmnError("task_failed_code", "User Task failed!");
     }
 }
